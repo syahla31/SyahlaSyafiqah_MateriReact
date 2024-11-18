@@ -40,14 +40,16 @@ export default function Card({ product }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="transition-all duration-300 transform hover:scale-102 flex flex-col max-w-[370px] h-[500px] rounded-lg overflow-hidden bg-white shadow-md hover:shadow-xl">
+      <div className="transition-all duration-300 transform hover:scale-102 flex flex-col rounded-lg overflow-hidden bg-white shadow-md hover:shadow-xl sm:max-w-[250px] md:max-w-[300px] lg:max-w-[370px]">
         {/* Image Container */}
-        <div className="relative flex-grow">
-          <img
-            src={product.imageUrl ?? ""}
-            alt={product.name ?? "No name"}
-            className="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+        <div className="relative">
+          <div className="w-full aspect-w-4 aspect-h-3">
+            <img
+              src={product.imageUrl ?? ""}
+              alt={product.name ?? "No name"}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
           <div className="absolute top-4 right-4">
             <button className="p-2 rounded-full bg-white/80 hover:bg-pink-100 transition-colors duration-200">
               <FontAwesomeIcon
@@ -66,14 +68,14 @@ export default function Card({ product }) {
         </div>
 
         {/* Content Container */}
-        <div className="p-6 bg-gradient-to-b from-pink-50 to-blue-50 min-h-[200px] flex flex-col justify-between">
+        <div className="p-4 bg-gradient-to-b from-pink-50 to-blue-50 flex flex-col justify-between grow">
           <div className="flex flex-col gap-3">
-            <h4 className="font-semibold text-xl text-gray-800 group-hover:text-blue-600 transition-colors">
+            <h4 className="font-semibold text-lg text-gray-800 group-hover:text-blue-600 transition-colors truncate">
               {product.name ?? "No Name"}
             </h4>
 
             <div className="flex justify-between items-center">
-              <span className="text-xl font-bold text-gray-900">
+              <span className="text-lg font-bold text-gray-900">
                 {formatToIDRCurrency(product.price) ?? "Not for sale"}
               </span>
               <span
@@ -88,7 +90,7 @@ export default function Card({ product }) {
             <Button
               type="button"
               className={`
-            w-full mt-2 inline-flex items-center justify-center gap-2 p-4 
+            w-full mt-4 inline-flex items-center justify-center gap-2 p-3 
             bg-gradient-to-r from-blue-400 to-pink-400 
             hover:from-blue-500 hover:to-pink-500
             text-white rounded-lg transition-all duration-300
